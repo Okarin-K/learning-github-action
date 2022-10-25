@@ -14,11 +14,14 @@ jobs:
         run: |
           lighthouse \
             --chrome-flags="--headless" \
-            --output html --output-path ./report.html \
-            'https://www.google.com/?hl=ja'
+            --output html --output-path /tmp/report.html \
+            'https://<target>.com'
+          mkdir ./public
+          cp /tmp/report.html ./public/report.html
 
-      - name: Upload result
-        uses: actions/upload-artifact@master
+      - name: Deploy
+        uses: peaceiris/actions-gh-pages@v3
         with:
-          name: report
-          path: report.html
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./public
+          keep_files: true

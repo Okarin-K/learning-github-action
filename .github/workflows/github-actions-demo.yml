@@ -15,7 +15,7 @@ jobs:
           lighthouse \
             --chrome-flags="--headless" \
             --output html --output-path /tmp/report.html \
-            'https://<target>.com'
+            'https://www.google.com/?hl=ja'
           mkdir ./public
           cp /tmp/report.html ./public/report.html
 

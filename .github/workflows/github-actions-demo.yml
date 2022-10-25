@@ -1,4 +1,5 @@
 name: lighthouse
+on: [push]
 
 jobs:
   test:

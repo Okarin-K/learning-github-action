@@ -1,0 +1,14 @@
+{
+    "ci": {
+      "collect": {
+        "numberOfRuns": 1,
+        "startServerCommand": "npm run start",
+        "url": [
+          "https://www.google.com/?hl=ja"
+        ]
+      },
+      "upload": {
+        "target": "temporary-public-storage"
+      }
+    }
+  }

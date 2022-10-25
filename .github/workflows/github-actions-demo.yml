@@ -1,27 +1,22 @@
-name: lighthouse
+name: CI
 on: [push]
-
 jobs:
-  test:
-    runs-on: ubuntu-18.04
+  lhci:
+    name: Lighthouse
+    runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
-
-      - name: Install lighthouse
-        run: sudo npm i -g lighthouse
-
-      - name: Run lighthouse
-        run: |
-          lighthouse \
-            --chrome-flags="--headless" \
-            --output html --output-path /tmp/index.html \
-            'https://www.google.com/?hl=ja'
-          mkdir ./public
-          cp /tmp/index.html ./public/index.html
-
-      - name: Deploy
-        uses: peaceiris/actions-gh-pages@v3
+      - name: Use Node.js 14
+        uses: actions/setup-node@v1
         with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: ./public
-          keep_files: true
+          node-version: 14
+      - name: npm install, build
+        run: |
+          npm install
+          npm run build
+      - name: run Lighthouse CI
+        run: |
+          npm install -g @lhci/cli@0.8.x
+          lhci autorun --config=./lighthouse/lighthouserc.json
+        env:
+          LHCI_GITHUB_APP_TOKEN: ${{ secrets.LHCI_GITHUB_APP_TOKEN }}

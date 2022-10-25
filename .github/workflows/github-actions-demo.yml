@@ -14,10 +14,10 @@ jobs:
         run: |
           lighthouse \
             --chrome-flags="--headless" \
-            --output html --output-path /tmp/report.html \
+            --output html --output-path /tmp/index.html \
             'https://www.google.com/?hl=ja'
           mkdir ./public
-          cp /tmp/report.html ./public/report.html
+          cp /tmp/index.html ./public/index.html
 
       - name: Deploy
         uses: peaceiris/actions-gh-pages@v3

@@ -1,9 +1,5 @@
 name: lighthouse
 
-on:
-  schedule:
-    - cron: '23 23 * * 0'
-
 jobs:
   test:
     runs-on: ubuntu-18.04

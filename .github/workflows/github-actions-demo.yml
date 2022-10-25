@@ -15,7 +15,7 @@ jobs:
           lighthouse \
             --chrome-flags="--headless" \
             --output html --output-path ./report.html \
-            'https://<target>.com'
+            'https://www.google.com/?hl=ja'
 
       - name: Upload result
         uses: actions/upload-artifact@master
